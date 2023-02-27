@@ -65,7 +65,7 @@ app.MapGet("/api/characters", () =>
 
 app.MapGet("/api/characters/{characterId}", (int characterId) =>
 {
-    var character = 583.Equals(characterId) ? Results.Ok(snow) : Results.NotFound();
+    return characterId == snow.Id ? Results.Ok(snow) : Results.NotFound();
 })
 .WithName("GetCharacterById")
 .WithOpenApi();
