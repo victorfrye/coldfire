@@ -1,4 +1,6 @@
-﻿namespace ColdfireApi
+﻿using System.Diagnostics.Metrics;
+
+namespace ColdfireApi
 {
     public class House
     {
@@ -7,18 +9,27 @@
         public string? Region { get; set; }
         public string? CoatOfArms { get; set; }
         public string? Words { get; set; }
-        public ISet<string>? Titles { get; set; }
-        public ISet<string>? Seats { get; set; }
+        public ISet<string> Titles { get; set; }
+        public ISet<string> Seats { get; set; }
         public Character? CurrentLord { get; set; }
         public Character? Heir { get; set; }
-        public Character? Overlord { get; set; }
+        public House? Overlord { get; set; }
         public string? Founded { get; set; }
         public Character? Founder { get; set; }
         public string? DiedOut { get; set; }
-        public ISet<string>? AncestralWeapons { get; set; }
+        public ISet<string> AncestralWeapons { get; set; }
         public ISet<House> CadetBranches { get; set; }
 
         public ISet<Character> SwornMembers { get; set; }
+
+        public House()
+        {
+            Titles = new HashSet<string>();
+            Seats = new HashSet<string>();
+            AncestralWeapons = new HashSet<string>();
+            CadetBranches = new HashSet<House>();
+            SwornMembers = new HashSet<Character>();
+        }
 
         public House(
             int id,
@@ -30,7 +41,7 @@
             ISet<string> seats,
             Character currentLord,
             Character heir,
-            Character overlord,
+            House overlord,
             string founded,
             Character founder,
             string diedOut,

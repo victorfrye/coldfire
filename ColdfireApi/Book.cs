@@ -14,6 +14,13 @@
         public ISet<Character> Characters { get; set; }
         public ISet<Character> PovCharacters { get; set; }
 
+        public Book()
+        {
+            Authors = new HashSet<string>();
+            Characters = new HashSet<Character>();
+            PovCharacters = new HashSet<Character>();
+        }
+
         public Book(
             int id,
             string name,

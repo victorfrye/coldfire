@@ -1,4 +1,6 @@
-﻿namespace ColdfireApi
+﻿using static System.Reflection.Metadata.BlobBuilder;
+
+namespace ColdfireApi
 {
     public class Character
     {
@@ -19,6 +21,17 @@
         public ISet<Book> PovBooks { get; set; }
         public ISet<string> TvSeries { get; set; }
         public ISet<string> PlayedBy { get; set; }
+
+        public Character()
+        {
+            Titles = new HashSet<string>();
+            Aliases = new HashSet<string>();
+            Allegiances = new HashSet<House>();
+            Books = new HashSet<Book>();
+            PovBooks = new HashSet<Book>();
+            TvSeries = new HashSet<string>();
+            PlayedBy = new HashSet<string>();
+        }
 
         public Character(
             int id,
