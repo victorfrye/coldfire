@@ -3,7 +3,6 @@
     public class Book
     {
         public int Id { get; set; }
-        public string Url { get; set; }
         public string Name { get; set; }
         public string Isbn { get; set; }
         public ISet<string> Authors { get; set; }
@@ -15,10 +14,15 @@
         public ISet<Character> Characters { get; set; }
         public ISet<Character> PovCharacters { get; set; }
 
+        public Book()
+        {
+            Authors = new HashSet<string>();
+            Characters = new HashSet<Character>();
+            PovCharacters = new HashSet<Character>();
+        }
+
         public Book(
             int id,
-            string slug,
-            string url,
             string name,
             string isbn,
             ISet<string> authors,
@@ -31,8 +35,6 @@
             ISet<Character> povCharacters)
         {
             Id = id;
-            Slug = slug;
-            Url = url;
             Name = name;
             Isbn = isbn;
             Authors = authors ?? new HashSet<string>();

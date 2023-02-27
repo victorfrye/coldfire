@@ -1,9 +1,8 @@
 using ColdfireApi;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddDbContext<ColdfireDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("ColdfireDatabase")));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -17,12 +16,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.MapGet("/characters", () =>
-{
-    var characters = new[] {
-        new Character
-        (
+/*
+var snow = new Character(
             583,
             "Jon Snow",
             "Male",
@@ -56,11 +51,19 @@ app.MapGet("/characters", () =>
                 "Season 5",
                 "Season 6"
             },
-            new HashSet<string> {"Kit Harington" }
-        ) };
-    return characters;
-})
+            new HashSet<string> { "Kit Harington" }
+        );*/
+
+app.MapGet("/api/characters", async (ColdfireDbContext db) => await db.Characters.ToListAsync())
 .WithName("GetCharacters")
+.WithOpenApi();
+
+app.MapGet("/api/characters/{characterId}", async (int characterId, ColdfireDbContext db) =>
+    await db.Characters.FindAsync(characterId)
+        is Character character
+            ? Results.Ok(character)
+            : Results.NotFound())
+.WithName("GetCharacterById")
 .WithOpenApi();
 
 app.Run();

@@ -1,10 +1,10 @@
-﻿namespace ColdfireApi
+﻿using static System.Reflection.Metadata.BlobBuilder;
+
+namespace ColdfireApi
 {
     public class Character
     {
         public int Id { get; set; }
-        public string Slug { get; set; }
-        public string Url { get; }
         public string Name { get; set; }
         public string? Gender { get; set; }
         public string? Culture { get; set; }
@@ -21,6 +21,17 @@
         public ISet<Book> PovBooks { get; set; }
         public ISet<string> TvSeries { get; set; }
         public ISet<string> PlayedBy { get; set; }
+
+        public Character()
+        {
+            Titles = new HashSet<string>();
+            Aliases = new HashSet<string>();
+            Allegiances = new HashSet<House>();
+            Books = new HashSet<Book>();
+            PovBooks = new HashSet<Book>();
+            TvSeries = new HashSet<string>();
+            PlayedBy = new HashSet<string>();
+        }
 
         public Character(
             int id,
@@ -41,8 +52,6 @@
             ISet<string> playedBy)
         {
             Id = id;
-            Slug = name.Replace(" ", "-").ToLower();
-            Url = String.Empty;
             Name = name;
             Gender = gender;
             Culture = culture;
