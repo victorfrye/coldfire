@@ -3,8 +3,6 @@
     public class House
     {
         public int Id { get; set; }
-        public string Slug { get; set; }
-        public string Url { get; }
         public string Name { get; set; }
         public string? Region { get; set; }
         public string? CoatOfArms { get; set; }
@@ -22,15 +20,9 @@
 
         public ISet<Character> SwornMembers { get; set; }
 
-        public House(int id)
-        {
-            Id = id;
-        }
-
         public House(
             int id,
             string name,
-            string url,
             string region,
             string coatOfArms,
             string words,
@@ -47,10 +39,7 @@
             ISet<Character> swornMembers)
         {
             Id = id;
-            Slug = name.Replace(" ", "-").ToLower();
-            Url = String.Empty;
             Name = name;
-            Url = url;
             Region = region;
             CoatOfArms = coatOfArms;
             Words = words;

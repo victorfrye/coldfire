@@ -18,11 +18,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/characters", () =>
-{
-    var characters = new[] {
-        new Character
-        (
+var snow = new Character(
             583,
             "Jon Snow",
             "Male",
@@ -56,11 +52,22 @@ app.MapGet("/characters", () =>
                 "Season 5",
                 "Season 6"
             },
-            new HashSet<string> {"Kit Harington" }
-        ) };
-    return characters;
+            new HashSet<string> { "Kit Harington" }
+        );
+
+app.MapGet("/api/characters", () =>
+{
+    var characters = new List<Character> { snow };
+    return Results.Ok(characters);
 })
 .WithName("GetCharacters")
+.WithOpenApi();
+
+app.MapGet("/api/characters/{characterId}", (int characterId) =>
+{
+    var character = 583.Equals(characterId) ? Results.Ok(snow) : Results.NotFound();
+})
+.WithName("GetCharacterById")
 .WithOpenApi();
 
 app.Run();

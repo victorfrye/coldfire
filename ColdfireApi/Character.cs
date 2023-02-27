@@ -3,8 +3,6 @@
     public class Character
     {
         public int Id { get; set; }
-        public string Slug { get; set; }
-        public string Url { get; }
         public string Name { get; set; }
         public string? Gender { get; set; }
         public string? Culture { get; set; }
@@ -41,8 +39,6 @@
             ISet<string> playedBy)
         {
             Id = id;
-            Slug = name.Replace(" ", "-").ToLower();
-            Url = String.Empty;
             Name = name;
             Gender = gender;
             Culture = culture;
