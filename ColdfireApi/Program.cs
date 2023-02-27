@@ -2,7 +2,8 @@ using ColdfireApi;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<ColdfireDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("ColdfireDatabase")));
+builder.Services.AddDbContext<ColdfireDbContext>(options => 
+    options.UseSqlite(builder.Configuration.GetConnectionString("ColdfireDatabase")));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
