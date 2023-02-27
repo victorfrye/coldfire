@@ -17,16 +17,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/api/characters", async (ColdfireDbContext db) => await db.Characters.ToListAsync())
-.WithName("GetCharacters")
-.WithOpenApi();
-
-app.MapGet("/api/characters/{characterId}", async (int characterId, ColdfireDbContext db) =>
-    await db.Characters.FindAsync(characterId)
-        is Character character
-            ? Results.Ok(character)
-            : Results.NotFound())
-.WithName("GetCharacterById")
-.WithOpenApi();
+app.MapBookEndpoints();
+app.MapCharacterEndpoints();
+app.MapHouseEndpoints();
 
 app.Run();
