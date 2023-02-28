@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-
-namespace ColdfireApi
+﻿namespace ColdfireApi
 {
     public class House
     {
