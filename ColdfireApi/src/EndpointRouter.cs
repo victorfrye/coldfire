@@ -1,6 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using VictorFrye.Coldfire.Data;
+using VictorFrye.Coldfire.Data.Books;
+using VictorFrye.Coldfire.Data.Characters;
+using VictorFrye.Coldfire.Data.Houses;
 
-namespace ColdfireApi
+namespace VictorFrye.Coldfire.Api
 {
     public static class EndpointRouter
     {
@@ -11,7 +15,7 @@ namespace ColdfireApi
             .WithOpenApi();
 
             app.MapGet("/api/books/{bookId}", async (int bookId, ColdfireDbContext db) =>
-                await db.Books.FindAsync(bookId) is Book book ? Results.Ok(book) : Results.NotFound())
+                await db.Books.FindAsync(bookId) is BookEntity book ? Results.Ok(book) : Results.NotFound())
             .WithName("GetBookById")
             .WithOpenApi();
 
@@ -24,7 +28,7 @@ namespace ColdfireApi
             .WithOpenApi();
 
             app.MapGet("/api/characters/{characterId}", async (int characterId, ColdfireDbContext db) =>
-                await db.Characters.FindAsync(characterId) is Character character ? Results.Ok(character) : Results.NotFound())
+                await db.Characters.FindAsync(characterId) is CharacterEntity character ? Results.Ok(character) : Results.NotFound())
             .WithName("GetCharacterById")
             .WithOpenApi();
 
@@ -38,7 +42,7 @@ namespace ColdfireApi
             .WithOpenApi();
 
             app.MapGet("/api/houses/{houseId}", async (int houseId, ColdfireDbContext db) =>
-                await db.Houses.FindAsync(houseId) is House house ? Results.Ok(house) : Results.NotFound())
+                await db.Houses.FindAsync(houseId) is HouseEntity house ? Results.Ok(house) : Results.NotFound())
             .WithName("GetHouseById")
             .WithOpenApi();
 

@@ -1,5 +1,6 @@
-using ColdfireApi;
 using Microsoft.EntityFrameworkCore;
+using VictorFrye.Coldfire.Api;
+using VictorFrye.Coldfire.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ColdfireDbContext>(options =>
