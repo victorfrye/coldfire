@@ -1,6 +1,4 @@
-﻿using static System.Reflection.Metadata.BlobBuilder;
-
-namespace ColdfireApi
+﻿namespace ColdfireApi
 {
     public class Character
     {

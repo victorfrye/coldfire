@@ -24,4 +24,12 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\victor.frye\Source\Repos\VictorFrye\Coldfire\ColdfireApi\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\victor.frye\Source\Repos\VictorFrye\Coldfire\ColdfireApi\.editorconfig" />
+  </ItemGroup>
+
 </Project>
