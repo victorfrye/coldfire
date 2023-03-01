@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace ColdfireApi.Migrations
+namespace VictorFrye.Coldfire.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -16,14 +16,14 @@ namespace ColdfireApi.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
                     Isbn = table.Column<string>(type: "TEXT", nullable: false),
                     Authors = table.Column<string>(type: "TEXT", nullable: false),
                     NumberOfPages = table.Column<int>(type: "INTEGER", nullable: false),
                     Publisher = table.Column<string>(type: "TEXT", nullable: true),
                     Country = table.Column<string>(type: "TEXT", nullable: true),
                     MediaType = table.Column<string>(type: "TEXT", nullable: true),
-                    Released = table.Column<string>(type: "TEXT", nullable: true)
+                    Released = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,7 +36,6 @@ namespace ColdfireApi.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
                     Gender = table.Column<string>(type: "TEXT", nullable: true),
                     Culture = table.Column<string>(type: "TEXT", nullable: true),
                     Born = table.Column<string>(type: "TEXT", nullable: true),
@@ -47,7 +46,8 @@ namespace ColdfireApi.Migrations
                     CharacterMotherForeignKey = table.Column<int>(type: "INTEGER", nullable: true),
                     CharacterSpouseForeignKey = table.Column<int>(type: "INTEGER", nullable: true),
                     TvSeries = table.Column<string>(type: "TEXT", nullable: false),
-                    PlayedBy = table.Column<string>(type: "TEXT", nullable: false)
+                    PlayedBy = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -123,7 +123,6 @@ namespace ColdfireApi.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
                     Region = table.Column<string>(type: "TEXT", nullable: true),
                     CoatOfArms = table.Column<string>(type: "TEXT", nullable: true),
                     Words = table.Column<string>(type: "TEXT", nullable: true),
@@ -135,7 +134,8 @@ namespace ColdfireApi.Migrations
                     Founded = table.Column<string>(type: "TEXT", nullable: true),
                     HouseFounderForeignKey = table.Column<int>(type: "INTEGER", nullable: true),
                     DiedOut = table.Column<string>(type: "TEXT", nullable: true),
-                    AncestralWeapons = table.Column<string>(type: "TEXT", nullable: false)
+                    AncestralWeapons = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -167,11 +167,11 @@ namespace ColdfireApi.Migrations
                 columns: table => new
                 {
                     CadetBranchesId = table.Column<int>(type: "INTEGER", nullable: false),
-                    HouseId = table.Column<int>(type: "INTEGER", nullable: false)
+                    HouseEntityId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HouseCadetBranches", x => new { x.CadetBranchesId, x.HouseId });
+                    table.PrimaryKey("PK_HouseCadetBranches", x => new { x.CadetBranchesId, x.HouseEntityId });
                     table.ForeignKey(
                         name: "FK_HouseCadetBranches_Houses_CadetBranchesId",
                         column: x => x.CadetBranchesId,
@@ -179,8 +179,8 @@ namespace ColdfireApi.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HouseCadetBranches_Houses_HouseId",
-                        column: x => x.HouseId,
+                        name: "FK_HouseCadetBranches_Houses_HouseEntityId",
+                        column: x => x.HouseEntityId,
                         principalTable: "Houses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -210,11 +210,6 @@ namespace ColdfireApi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Characters",
-                columns: new[] { "Id", "Aliases", "Born", "CharacterFatherForeignKey", "CharacterMotherForeignKey", "CharacterSpouseForeignKey", "Culture", "Died", "Gender", "Name", "PlayedBy", "Titles", "TvSeries" },
-                values: new object[] { 583, "Lord Snow;Ned Stark's Bastard;The Snow of Winterfell;The Crow-Come-Over;The 998th Lord Commander of the Night's Watch;The Bastard of Winterfell;The Black Bastard of the Wall;Lord Crow", "In 283 AC", null, null, null, "Northmen", null, "Male", "Jon Snow", "Kit Harington", "Lord Commander of the Night's Watch", "Season 1;Season 2;Season 3;Season 4;Season 5;Season 6" });
-
             migrationBuilder.CreateIndex(
                 name: "IX_BookCharacters_CharactersId",
                 table: "BookCharacters",
@@ -241,9 +236,9 @@ namespace ColdfireApi.Migrations
                 column: "CharacterSpouseForeignKey");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HouseCadetBranches_HouseId",
+                name: "IX_HouseCadetBranches_HouseEntityId",
                 table: "HouseCadetBranches",
-                column: "HouseId");
+                column: "HouseEntityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Houses_HouseCurrentLordForeignKey",

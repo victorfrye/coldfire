@@ -7,8 +7,8 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["ColdfireApi/ColdfireApi.csproj", "ColdfireApi/"]
-RUN dotnet restore "ColdfireApi/ColdfireApi.csproj"
+COPY ["Api/ColdfireApi.csproj", "Api/"]
+RUN dotnet restore "Api/ColdfireApi.csproj"
 COPY . .
 WORKDIR "/src/ColdfireApi"
 RUN dotnet build "ColdfireApi.csproj" -c Release -o /app/build

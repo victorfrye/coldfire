@@ -1,13 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using VictorFrye.Coldfire.Data.Books;
+using VictorFrye.Coldfire.Data.Characters;
+using VictorFrye.Coldfire.Data.Houses;
 
-namespace ColdfireApi
+namespace VictorFrye.Coldfire.Data
 {
     public class ColdfireDbContext : DbContext
     {
-        public DbSet<Book> Books { get; set; }
-        public DbSet<House> Houses { get; set; }
-        public DbSet<Character> Characters { get; set; }
+        public DbSet<BookEntity> Books { get; set; }
+        public DbSet<HouseEntity> Houses { get; set; }
+        public DbSet<CharacterEntity> Characters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder model)
         {
@@ -15,150 +18,113 @@ namespace ColdfireApi
                 v => string.Join(";", v),
                 v => v.Split(new[] { ';' }).ToHashSet());
 
-            model.Entity<Book>()
+            model.Entity<BookEntity>()
                 .Property(b => b.Authors)
                 .HasConversion(converter);
 
-            model.Entity<Book>()
+            model.Entity<BookEntity>()
                 .HasMany(b => b.Characters)
                 .WithMany(c => c.Books)
                 .UsingEntity(j => j.ToTable("BookCharacters"));
 
-            model.Entity<Book>()
+            model.Entity<BookEntity>()
                 .HasMany(b => b.PovCharacters)
                 .WithMany(c => c.PovBooks)
                 .UsingEntity(j => j.ToTable("BookPovCharacters"));
 
-            model.Entity<House>()
+            model.Entity<HouseEntity>()
                 .Property(h => h.Titles)
                 .HasConversion(converter);
 
-            model.Entity<House>()
+            model.Entity<HouseEntity>()
                 .Property(h => h.Seats)
                 .HasConversion(converter);
 
-            model.Entity<House>()
+            model.Entity<HouseEntity>()
                 .Property<int?>("HouseCurrentLordForeignKey");
 
-            model.Entity<House>()
+            model.Entity<HouseEntity>()
                 .HasOne(h => h.CurrentLord)
                 .WithMany()
                 .HasForeignKey("HouseCurrentLordForeignKey");
 
-            model.Entity<House>()
+            model.Entity<HouseEntity>()
                 .Property<int?>("HouseHeirForeignKey");
 
-            model.Entity<House>()
+            model.Entity<HouseEntity>()
                 .HasOne(h => h.Heir)
                 .WithMany()
                 .HasForeignKey("HouseHeirForeignKey");
 
-            model.Entity<House>()
+            model.Entity<HouseEntity>()
                 .Property<int?>("HouseOverlordForeignKey");
 
-            model.Entity<House>()
+            model.Entity<HouseEntity>()
                 .HasOne(h => h.Overlord)
                 .WithMany()
                 .HasForeignKey("HouseOverlordForeignKey");
 
-            model.Entity<House>()
+            model.Entity<HouseEntity>()
                 .Property<int?>("HouseFounderForeignKey");
 
-            model.Entity<House>()
+            model.Entity<HouseEntity>()
                 .HasOne(h => h.Founder)
                 .WithMany()
                 .HasForeignKey("HouseFounderForeignKey");
 
-            model.Entity<House>()
+            model.Entity<HouseEntity>()
                 .Property(h => h.AncestralWeapons)
                 .HasConversion(converter);
 
-            model.Entity<House>()
+            model.Entity<HouseEntity>()
                 .HasMany(h => h.CadetBranches)
                 .WithMany()
                 .UsingEntity(j => j.ToTable("HouseCadetBranches"));
 
-            model.Entity<House>()
+            model.Entity<HouseEntity>()
                 .HasMany(h => h.SwornMembers)
                 .WithMany(c => c.Allegiances)
                 .UsingEntity(j => j.ToTable("HouseSwornMembers"));
 
-            model.Entity<Character>()
+            model.Entity<CharacterEntity>()
                 .Property(h => h.Titles)
                 .HasConversion(converter);
 
-            model.Entity<Character>()
+            model.Entity<CharacterEntity>()
                 .Property(h => h.Aliases)
                 .HasConversion(converter);
 
-            model.Entity<Character>()
+            model.Entity<CharacterEntity>()
                 .Property<int?>("CharacterFatherForeignKey");
 
-            model.Entity<Character>()
+            model.Entity<CharacterEntity>()
                 .HasOne(c => c.Father)
                 .WithMany()
                 .HasForeignKey("CharacterFatherForeignKey");
 
-            model.Entity<Character>()
+            model.Entity<CharacterEntity>()
                 .Property<int?>("CharacterMotherForeignKey");
 
-            model.Entity<Character>()
+            model.Entity<CharacterEntity>()
                 .HasOne(c => c.Mother)
                 .WithMany()
                 .HasForeignKey("CharacterMotherForeignKey");
 
-            model.Entity<Character>()
+            model.Entity<CharacterEntity>()
                 .Property<int?>("CharacterSpouseForeignKey");
 
-            model.Entity<Character>()
+            model.Entity<CharacterEntity>()
                 .HasOne(c => c.Spouse)
                 .WithMany()
                 .HasForeignKey("CharacterSpouseForeignKey");
 
-            model.Entity<Character>()
+            model.Entity<CharacterEntity>()
                 .Property(h => h.TvSeries)
                 .HasConversion(converter);
 
-            model.Entity<Character>()
+            model.Entity<CharacterEntity>()
                 .Property(h => h.PlayedBy)
                 .HasConversion(converter);
-
-            model.Entity<Character>().HasData(
-                new Character(
-                    id: 583,
-                    name: "Jon Snow",
-                    gender: "Male",
-                    culture: "Northmen",
-                    born: "In 283 AC",
-                    died: null,
-                    titles: new HashSet<string> { "Lord Commander of the Night's Watch" },
-                    aliases: new HashSet<string>
-                    {
-                        "Lord Snow",
-                        "Ned Stark's Bastard",
-                        "The Snow of Winterfell",
-                        "The Crow-Come-Over",
-                        "The 998th Lord Commander of the Night's Watch",
-                        "The Bastard of Winterfell",
-                        "The Black Bastard of the Wall",
-                        "Lord Crow"
-                    },
-                    father: null,
-                    mother: null,
-                    spouse: null,
-                    allegiances: new HashSet<House>(),
-                    books: new HashSet<Book>(),
-                    povBooks: new HashSet<Book>(),
-                    tvSeries: new HashSet<string>
-                    {
-                        "Season 1",
-                        "Season 2",
-                        "Season 3",
-                        "Season 4",
-                        "Season 5",
-                        "Season 6"
-                    },
-                    playedBy: new HashSet<string> { "Kit Harington" }));
 
             base.OnModelCreating(model);
         }
