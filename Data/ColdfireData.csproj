@@ -6,6 +6,13 @@
     <Nullable>enable</Nullable>
     <RootNamespace>VictorFrye.Coldfire.Data</RootNamespace>
     <AssemblyName>VictorFrye.Coldfire.Data</AssemblyName>
+    <Title>Coldfire Data</Title>
+    <Product>Coldfire.Data</Product>
+    <Company />
+    <Authors>victorfrye</Authors>
+    <RepositoryUrl>https://github.com/victorfrye/coldfire</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/victorfrye/coldfire</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>

@@ -6,8 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dd6ea745-d006-4838-a619-bc2c83f8d0d5</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <RootNamespace>VictorFrye.Coldfire.DataSeeder</RootNamespace>
-    <AssemblyName>VictorFrye.Coldfire.DataSeeder</AssemblyName>
+    <RootNamespace>VictorFrye.Coldfire.Seeder</RootNamespace>
+    <AssemblyName>VictorFrye.Coldfire.Seeder</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,7 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ColdfireData\ColdfireData.csproj" />
+    <ProjectReference Include="..\Data\ColdfireData.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

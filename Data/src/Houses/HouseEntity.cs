@@ -9,8 +9,11 @@ public class HouseEntity : BaseEntity
     public string? Words { get; set; }
     public ISet<string> Titles { get; set; }
     public ISet<string> Seats { get; set; }
+    public int? CurrentLordId { get; set; }
     public CharacterEntity? CurrentLord { get; set; }
+    public int? HeirId { get; set; }
     public CharacterEntity? Heir { get; set; }
+    public int? OverlordId { get; set; }
     public HouseEntity? Overlord { get; set; }
     public string? Founded { get; set; }
     public CharacterEntity? Founder { get; set; }
@@ -19,6 +22,8 @@ public class HouseEntity : BaseEntity
     public ISet<HouseEntity> CadetBranches { get; set; }
 
     public ISet<CharacterEntity> SwornMembers { get; set; }
+
+
 
     public HouseEntity()
     {
@@ -37,11 +42,11 @@ public class HouseEntity : BaseEntity
         string words,
         ISet<string> titles,
         ISet<string> seats,
-        CharacterEntity currentLord,
-        CharacterEntity heir,
-        HouseEntity overlord,
+        CharacterEntity? currentLord,
+        CharacterEntity? heir,
+        HouseEntity? overlord,
         string founded,
-        CharacterEntity founder,
+        CharacterEntity? founder,
         string diedOut,
         ISet<string> ancestralWeapons,
         ISet<HouseEntity> cadetBranches,
@@ -63,5 +68,21 @@ public class HouseEntity : BaseEntity
         AncestralWeapons = ancestralWeapons ?? new HashSet<string>();
         CadetBranches = cadetBranches ?? new HashSet<HouseEntity>();
         SwornMembers = swornMembers ?? new HashSet<CharacterEntity>();
+    }
+
+    public HouseEntity(HouseDto dto)
+    {
+        Id = dto.Id;
+        Name = dto.Name;
+        Region = dto.Region;
+        CoatOfArms = dto.CoatOfArms;
+        Words = dto.Words;
+        Titles = dto.Titles.ToHashSet() ?? new HashSet<string>();
+        Seats = dto.Seats.ToHashSet() ?? new HashSet<string>();
+        Founded = dto.Founded;
+        DiedOut = dto.DiedOut;
+        AncestralWeapons = dto.AncestralWeapons.ToHashSet() ?? new HashSet<string>();
+        CadetBranches = new HashSet<HouseEntity>();
+        SwornMembers = new HashSet<CharacterEntity>();
     }
 }
