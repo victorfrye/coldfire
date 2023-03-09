@@ -11,7 +11,7 @@ using VictorFrye.Coldfire.Seeder;
 namespace VictorFrye.Coldfire.Seeder.Migrations
 {
     [DbContext(typeof(SeedDbContext))]
-    [Migration("20230301213611_SeedData")]
+    [Migration("20230309161511_SeedData")]
     partial class SeedData
     {
         /// <inheritdoc />
@@ -28079,17 +28079,11 @@ namespace VictorFrye.Coldfire.Seeder.Migrations
                     b.Property<string>("CoatOfArms")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("CurrentLordId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("DiedOut")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Founded")
                         .HasColumnType("TEXT");
-
-                    b.Property<int?>("HeirId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("HouseCurrentLordForeignKey")
                         .HasColumnType("INTEGER");
@@ -28106,9 +28100,6 @@ namespace VictorFrye.Coldfire.Seeder.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<int?>("OverlordId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Region")
                         .HasColumnType("TEXT");
