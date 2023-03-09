@@ -8,6 +8,11 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <RootNamespace>VictorFrye.Coldfire.Api</RootNamespace>
     <AssemblyName>VictorFrye.Coldfire.Api</AssemblyName>
+    <Title>Coldfire API</Title>
+    <Authors>victorfrye</Authors>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/victorfrye/coldfire/</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,6 +32,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="C:\Users\victor.frye\Source\Repos\VictorFrye\Coldfire\Api\.editorconfig" />
   </ItemGroup>
 

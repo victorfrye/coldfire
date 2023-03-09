@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColdfireSeeder", "src\Seede
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColdfireData", "src\Data\ColdfireData.csproj", "{3CC6A3FC-8F4C-4FF9-9FF9-95FDDADFFA9B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColdfireApp", "src\App\ColdfireApp.csproj", "{8400827A-6947-4958-833D-2F26F7EF1C74}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,12 @@ Global
 		{3CC6A3FC-8F4C-4FF9-9FF9-95FDDADFFA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CC6A3FC-8F4C-4FF9-9FF9-95FDDADFFA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CC6A3FC-8F4C-4FF9-9FF9-95FDDADFFA9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8400827A-6947-4958-833D-2F26F7EF1C74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8400827A-6947-4958-833D-2F26F7EF1C74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8400827A-6947-4958-833D-2F26F7EF1C74}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8400827A-6947-4958-833D-2F26F7EF1C74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8400827A-6947-4958-833D-2F26F7EF1C74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8400827A-6947-4958-833D-2F26F7EF1C74}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

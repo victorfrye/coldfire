@@ -1,4 +1,6 @@
-﻿using VictorFrye.Coldfire.Data.Houses;
+﻿using Newtonsoft.Json;
+using VictorFrye.Coldfire.Api.Characters;
+using VictorFrye.Coldfire.Data.Houses;
 
 namespace VictorFrye.Coldfire.Api.Houses;
 
@@ -31,14 +33,16 @@ public class House
         Words = entity.Words;
         Titles = entity.Titles.ToList() ?? new List<string>();
         Seats = entity.Seats.ToList() ?? new List<string>();
-        CurrentLord = entity.CurrentLord?.Name;
-        Heir = entity.Heir?.Name;
+        CurrentLord = entity.CurrentLord != null ? Character.GetDisplayName(entity.CurrentLord) : null;
+        Heir = entity.Heir != null ? Character.GetDisplayName(entity.Heir) : null;
         Overlord = entity.Overlord?.Name;
         Founded = entity.Founded;
-        Founder = entity.Founder?.Name;
+        Founder = entity.Founder != null ? Character.GetDisplayName(entity.Founder) : null;
         DiedOut = entity.DiedOut;
         AncestralWeapons = entity.AncestralWeapons.ToList() ?? new List<string>();
         CadetBranches = entity.CadetBranches.Any() ? entity.CadetBranches.Select(h => h.Name).ToList() : new List<string>();
-        SwornMembers = entity.SwornMembers.Any() ? entity.SwornMembers.Select(c => c.Name).ToList() : new List<string>();
+        SwornMembers = entity.SwornMembers.Any() ? entity.SwornMembers.Select(c => Character.GetDisplayName(c)).ToList() : new List<string>();
     }
+
+    public override string ToString() => JsonConvert.ToString(this);
 }
