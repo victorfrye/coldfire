@@ -6,18 +6,13 @@ namespace VictorFrye.Coldfire.Seeder
 {
     internal class SeedDbContext : ColdfireDbContext
     {
-        private readonly RawDataFiles _files;
-
         protected override void OnModelCreating(ModelBuilder model)
         {
             base.OnModelCreating(model);
 
-            model.Seed(_files);
+            model.Seed();
         }
 
-        public SeedDbContext(DbContextOptions<ColdfireDbContext> options, IOptionsSnapshot<RawDataFiles> files) : base(options)
-        {
-            _files = files.Value;
-        }
+        public SeedDbContext(DbContextOptions<ColdfireDbContext> options) : base(options) { }
     }
 }
