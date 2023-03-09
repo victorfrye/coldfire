@@ -1,11 +1,12 @@
-﻿using VictorFrye.Coldfire.Data.Characters;
+﻿using Newtonsoft.Json;
+using VictorFrye.Coldfire.Data.Characters;
 
 namespace VictorFrye.Coldfire.Api.Characters;
 
 public class Character
 {
     public int Id { get; set; }
-    public string Name { get; set; }
+    public string? Name { get; set; }
     public string? Gender { get; set; }
     public string? Culture { get; set; }
     public string? Born { get; set; }
@@ -31,13 +32,17 @@ public class Character
         Died = entity.Died;
         Titles = entity.Titles.ToList() ?? new List<string>();
         Aliases = entity.Aliases.ToList() ?? new List<string>();
-        Father = entity.Father?.Name;
-        Mother = entity.Mother?.Name;
-        Spouse = entity.Spouse?.Name;
+        Father = entity.Father != null ? GetDisplayName(entity.Father) : null;
+        Mother = entity.Mother != null ? GetDisplayName(entity.Mother) : null;
+        Spouse = entity.Spouse != null ? GetDisplayName(entity.Spouse) : null;
         Allegiances = entity.Allegiances.Any() ? entity.Allegiances.Select(a => a.Name).ToList() : new List<string>();
         Books = entity.Books.Any() ? entity.Books.Select(b => b.Name).ToList() : new List<string>();
         PovBooks = entity.PovBooks.Any() ? entity.PovBooks.Select(b => b.Name).ToList() : new List<string>();
         TvSeries = entity.TvSeries.ToList() ?? new List<string>();
         PlayedBy = entity.PlayedBy.ToList() ?? new List<string>();
     }
+
+    public static string GetDisplayName(CharacterEntity character) => string.IsNullOrWhiteSpace(character.Name) ? character.Name : character.Aliases.First();
+
+    public override string ToString() => JsonConvert.ToString(this);
 }

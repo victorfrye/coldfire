@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VictorFrye.Coldfire.App.MainPage"
+             Title="About">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Image Source="dragon_3d.png"
+                   SemanticProperties.Description="A 3D dragon!!"
+                   HeightRequest="64" />
+                <Label FontSize="36" FontAttributes="Bold" Text="Coldfire" VerticalOptions="End" />
+                <Label FontSize="36" Text="v0.2" VerticalOptions="End" />
+            </HorizontalStackLayout>
+
+            <Label
+                Text="This hobbist application is an experimental project that tests .NET MAUI, ASP.NET Minimal APIs, and Entity Framework."
+                HorizontalOptions="Center"/>
+
+            <Button
+                x:Name="CheckoutSourceBtn"
+                Text="Check out the source code!!"
+                SemanticProperties.Hint="Launches the browser and navigates to the Coldfire GitHub repository"
+                Clicked="OnCheckoutSourceClicked"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
