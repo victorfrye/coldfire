@@ -9,11 +9,8 @@ public class HouseEntity : BaseEntity
     public string? Words { get; set; }
     public ISet<string> Titles { get; set; }
     public ISet<string> Seats { get; set; }
-    public int? CurrentLordId { get; set; }
     public CharacterEntity? CurrentLord { get; set; }
-    public int? HeirId { get; set; }
     public CharacterEntity? Heir { get; set; }
-    public int? OverlordId { get; set; }
     public HouseEntity? Overlord { get; set; }
     public string? Founded { get; set; }
     public CharacterEntity? Founder { get; set; }

@@ -3,18 +3,19 @@ using Newtonsoft.Json;
 using VictorFrye.Coldfire.Data.Books;
 using VictorFrye.Coldfire.Data.Characters;
 using VictorFrye.Coldfire.Data.Houses;
+using System.Linq;
 
 namespace VictorFrye.Coldfire.Seeder
 {
     internal static class Seeder
     {
-        public static void Seed(this ModelBuilder model, RawDataFiles files)
+        public static void Seed(this ModelBuilder model)
         {
             var projectFolder = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
 
-            var books = GetDtoData<BookDto>(Path.Combine(projectFolder, @"Seeder\files\books.json"));
-            var characters = GetDtoData<CharacterDto>(Path.Combine(projectFolder, @"Seeder\files\characters.json"));
-            var houses = GetDtoData<HouseDto>(Path.Combine(projectFolder, @"Seeder\files\houses.json"));
+            var books = GetDtoData<BookDto>(Path.Combine(projectFolder, @"src\Seeder\Files\books.json"));
+            var characters = GetDtoData<CharacterDto>(Path.Combine(projectFolder, @"src\Seeder\Files\characters.json"));
+            var houses = GetDtoData<HouseDto>(Path.Combine(projectFolder, @"src\Seeder\Files\houses.json"));
 
             model.InsertData(books, characters, houses);
         }
@@ -41,16 +42,16 @@ namespace VictorFrye.Coldfire.Seeder
                 culture: c.Culture,
                 born: c.Born,
                 died: c.Died,
-                titles: c.Titles.ToHashSet<string>(),
-                aliases: c.Aliases.ToHashSet<string>(),
+                titles: c.Titles.ToHashSet(),
+                aliases: c.Aliases.ToHashSet(),
                 father: null,
                 mother: null,
                 spouse: null,
                 allegiances: new HashSet<HouseEntity>(),
                 books: new HashSet<BookEntity>(),
                 povBooks: new HashSet<BookEntity>(),
-                tvSeries: c.TvSeries.ToHashSet<string>(),
-                playedBy: c.PlayedBy.ToHashSet<string>()));
+                tvSeries: c.TvSeries.ToHashSet(),
+                playedBy: c.PlayedBy.ToHashSet()));
 
             var houseEntities = houses.Select(h => new HouseEntity(
                 id: h.Id,
@@ -69,6 +70,34 @@ namespace VictorFrye.Coldfire.Seeder
                 ancestralWeapons: h.AncestralWeapons.ToHashSet(),
                 cadetBranches: new HashSet<HouseEntity>(),
                 swornMembers: new HashSet<CharacterEntity>()));
+
+            model.Entity<BookEntity>().HasData(bookEntities);
+            model.Entity<CharacterEntity>().HasData(characterEntities);
+            model.Entity<HouseEntity>().HasData(houseEntities);
+
+            foreach (var character in characterEntities)
+            {
+                var data = characters.Find(c => c.Id == character.Id);
+
+                character.Father = characterEntities.FirstOrDefault(c => c.Id == data.Father);
+                character.Mother = characterEntities.FirstOrDefault(c => c.Id == data.Mother);
+                character.Spouse = characterEntities.FirstOrDefault(c => c.Id == data.Spouse);
+                character.Allegiances = houseEntities.Where(h => data.Allegiances.Contains(h.Id)).ToHashSet();
+                character.Books = bookEntities.Where(b => data.Books.Contains(b.Id)).ToHashSet();
+                character.PovBooks = bookEntities.Where(b => data.PovBooks.Contains(b.Id)).ToHashSet();
+
+            }
+
+            foreach (var house in houseEntities)
+            {
+                var data = houses.Find(h => h.Id == house.Id);
+
+                house.CurrentLord = characterEntities.FirstOrDefault(c => c.Id == data.CurrentLord);
+                house.Heir = characterEntities.FirstOrDefault(c => c.Id == data.Heir);
+                house.Overlord = houseEntities.FirstOrDefault(h => h.Id == data.Overlord);
+                house.Founder = characterEntities.FirstOrDefault(c => c.Id == data.Founder);
+                house.CadetBranches = houseEntities.Where(h => data.CadetBranches.Contains(h.Id)).ToHashSet();
+            }
 
             model.Entity<BookEntity>().HasData(bookEntities);
             model.Entity<CharacterEntity>().HasData(characterEntities);
