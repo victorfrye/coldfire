@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using VictorFrye.Coldfire.Data.Characters;
-
-namespace VictorFrye.Coldfire.Api.Characters;
+﻿namespace VictorFrye.Coldfire.Data.Characters;
 
 public class Character
 {
@@ -21,6 +18,42 @@ public class Character
     public IList<string> PovBooks { get; set; }
     public IList<string> TvSeries { get; set; }
     public IList<string> PlayedBy { get; set; }
+
+    public Character(
+        int id,
+        string name,
+        string gender,
+        string culture,
+        string born,
+        string died,
+        IList<string> titles,
+        IList<string> aliases,
+        string father,
+        string mother,
+        string spouse,
+        IList<string> allegiances,
+        IList<string> books,
+        IList<string> povBooks,
+        IList<string> tvSeries,
+        IList<string> playedBy)
+    {
+        Id = id;
+        Name = name;
+        Gender = gender;
+        Culture = culture;
+        Born = born;
+        Died = died;
+        Titles = titles;
+        Aliases = aliases;
+        Father = father;
+        Mother = mother;
+        Spouse = spouse;
+        Allegiances = allegiances;
+        Books = books;
+        PovBooks = povBooks;
+        TvSeries = tvSeries;
+        PlayedBy = playedBy;
+    }
 
     public Character(CharacterEntity entity)
     {
@@ -43,6 +76,4 @@ public class Character
     }
 
     public static string GetDisplayName(CharacterEntity character) => string.IsNullOrWhiteSpace(character.Name) ? character.Name : character.Aliases.First();
-
-    public override string ToString() => JsonConvert.ToString(this);
 }

@@ -1,8 +1,6 @@
-﻿using Newtonsoft.Json;
-using VictorFrye.Coldfire.Api.Characters;
-using VictorFrye.Coldfire.Data.Houses;
+﻿using VictorFrye.Coldfire.Data.Characters;
 
-namespace VictorFrye.Coldfire.Api.Houses;
+namespace VictorFrye.Coldfire.Data.Houses;
 
 public class House
 {
@@ -43,6 +41,4 @@ public class House
         CadetBranches = entity.CadetBranches.Any() ? entity.CadetBranches.Select(h => h.Name).ToList() : new List<string>();
         SwornMembers = entity.SwornMembers.Any() ? entity.SwornMembers.Select(c => Character.GetDisplayName(c)).ToList() : new List<string>();
     }
-
-    public override string ToString() => JsonConvert.ToString(this);
 }

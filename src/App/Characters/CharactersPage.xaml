@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:VictorFrye.Coldfire.App.Characters"
+             x:Class="VictorFrye.Coldfire.App.Characters.CharactersPage"
+             Title="Characters">
+
+    <Frame BorderColor="Gray"
+               CornerRadius="0"
+               Padding="8">
+        <ScrollView>
+
+            <VerticalStackLayout
+                Spacing="15"
+                Padding="30,0"
+                VerticalOptions="Center">
+
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Image Source="prince_3d_default.png"
+                           SemanticProperties.Description="A 3D prince!!"
+                           HeightRequest="64" />
+                    <Label FontSize="36" FontAttributes="Bold" Text="{Binding Character.Name}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="2"
+                             HorizontalOptions="Fill" />
+
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="ID:" VerticalOptions="Center" />
+                    <Entry FontSize="18" Text="{Binding Character.Id, Mode=TwoWay}" VerticalOptions="End" />
+                    <Button 
+                           Command="{Binding FindCharacterCommand}"
+                           CommandParameter="2"
+                           SemanticProperties.Description="A 3D prince!!"
+                           IsEnabled="True"
+                           HeightRequest="24" 
+                           VerticalOptions="End"/>
+                </HorizontalStackLayout>
+                
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="Name:" VerticalOptions="End" />
+                    <Label FontSize="18" Text="{Binding Character.Name}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+                
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="Gender:" VerticalOptions="End" />
+                    <Label FontSize="18" Text="{Binding Character.Gender}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="Culture:" VerticalOptions="End" />
+                    <Label FontSize="18" Text="{Binding Character.Culture}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="Born:" VerticalOptions="End" />
+                    <Label FontSize="18" Text="{Binding Character.Born}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+                
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="Died:" VerticalOptions="End" />
+                    <Label FontSize="18" Text="{Binding Character.Died}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+                
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="Titles:" VerticalOptions="End" />
+                    <CollectionView ItemsSource="{Binding Character.Titles}" /> <!-- FontSize="18" Text="{Binding Character.Titles}" VerticalOptions="End" /> -->
+                </VerticalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="Aliases:" VerticalOptions="End" />
+                    <CollectionView ItemsSource="{Binding Character.Aliases}" VerticalOptions="End" />
+                </VerticalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+                
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="Father:" VerticalOptions="End" />
+                    <Label FontSize="18" Text="{Binding Character.Father}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="Mother:" VerticalOptions="End" />
+                    <Label FontSize="18" Text="{Binding Character.Mother}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+                
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="Spouse:" VerticalOptions="End" />
+                    <Label FontSize="18" Text="{Binding Character.Spouse}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+                
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="Allegiances:" VerticalOptions="Start" />
+                    <Label FontSize="18" Text="{Binding Character.Allegiances}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+                
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="Books:" VerticalOptions="End" />
+                    <Label FontSize="18" Text="{Binding Character.Books}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+                
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="POV Books:" VerticalOptions="End" />
+                    <Label FontSize="18" Text="{Binding Character.PovBooks}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="TV Series:" VerticalOptions="End" />
+                    <Label FontSize="18" Text="{Binding Character.TvSeries}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+
+                <BoxView Color="Gray"
+                             HeightRequest="1"
+                             HorizontalOptions="Fill" />
+
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                    <Label FontSize="18" FontAttributes="Bold" Text="Played By:" VerticalOptions="End" />
+                    <Label FontSize="18" Text="{Binding Character.PlayedBy}" VerticalOptions="End" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Frame>
+</ContentPage>

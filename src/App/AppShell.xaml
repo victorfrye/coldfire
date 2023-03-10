@@ -14,17 +14,17 @@
 
         <ShellContent
             Title="Books"
-            ContentTemplate="{DataTemplate local:BooksPage}"
+            ContentTemplate="{DataTemplate local:Books.BooksPage}"
             Icon="{OnPlatform 'fluent_book_filled_black.png'}" />
 
         <ShellContent
             Title="Characters"
-            ContentTemplate="{DataTemplate local:CharactersPage}"
+            ContentTemplate="{DataTemplate local:Characters.CharactersPage}"
             Icon="{OnPlatform 'fluent_person_filled_black.png'}" />
 
         <ShellContent
             Title="Houses"
-            ContentTemplate="{DataTemplate local:HousesPage}"
+            ContentTemplate="{DataTemplate local:Houses.HousesPage}"
             Icon="{OnPlatform 'fluent_home_filled_black.png'}" />
     </TabBar>
 

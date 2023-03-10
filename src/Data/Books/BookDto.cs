@@ -12,20 +12,4 @@ public class BookDto
     public DateTime ReleaseDate { get; set; }
     public int? PrecededBy { get; set; }
     public int? FollowedBy { get; set; }
-
-    /*    public BookEntity ToBookEntity()
-        {
-            return new BookEntity()
-            {
-                Id = Id,
-                Name = Name,
-                Isbn = Isbn,
-                Country = Country,
-                NumberOfPages = NumberOfPages,
-                Publisher = Publisher,
-                ReleaseDate = ReleaseDate,
-                MediaType = MediaType,
-                Authors = string.Join(";", Authors)
-            };
-        }*/
 }

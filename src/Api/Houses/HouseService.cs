@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VictorFrye.Coldfire.Data;
+using VictorFrye.Coldfire.Data.Houses;
 
 namespace VictorFrye.Coldfire.Api.Houses
 {

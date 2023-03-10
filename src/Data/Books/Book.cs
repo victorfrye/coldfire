@@ -1,8 +1,6 @@
-﻿using Newtonsoft.Json;
-using VictorFrye.Coldfire.Api.Characters;
-using VictorFrye.Coldfire.Data.Books;
+﻿using VictorFrye.Coldfire.Data.Characters;
 
-namespace VictorFrye.Coldfire.Api.Books;
+namespace VictorFrye.Coldfire.Data.Books;
 
 public class Book
 {
@@ -32,6 +30,4 @@ public class Book
         Characters = entity.Characters.Any() ? entity.Characters.Select(c => Character.GetDisplayName(c)).ToList() : new List<string>();
         PovCharacters = entity.PovCharacters.Any() ? entity.PovCharacters.Select(c => Character.GetDisplayName(c)).ToList() : new List<string>();
     }
-
-    public override string ToString() => JsonConvert.ToString(this);
 }

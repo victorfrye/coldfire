@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using VictorFrye.Coldfire.App.Characters;
+using VictorFrye.Coldfire.Data.Characters;
 
 namespace VictorFrye.Coldfire.App
 {
@@ -14,6 +17,10 @@ namespace VictorFrye.Coldfire.App
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
+            builder.Services.AddTransient<CharactersPage>();
+            builder.Services.AddTransient<CharacterViewModel>();
+            builder.Services.AddSingleton<IService<Character>, CharacterService>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

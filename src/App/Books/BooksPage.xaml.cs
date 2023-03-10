@@ -1,4 +1,4 @@
-namespace VictorFrye.Coldfire.App;
+namespace VictorFrye.Coldfire.App.Books;
 
 public partial class BooksPage : ContentPage
 {

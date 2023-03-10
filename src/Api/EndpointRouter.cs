@@ -1,6 +1,6 @@
-﻿using VictorFrye.Coldfire.Api.Books;
-using VictorFrye.Coldfire.Api.Characters;
-using VictorFrye.Coldfire.Api.Houses;
+﻿using VictorFrye.Coldfire.Data.Books;
+using VictorFrye.Coldfire.Data.Characters;
+using VictorFrye.Coldfire.Data.Houses;
 
 namespace VictorFrye.Coldfire.Api
 {
