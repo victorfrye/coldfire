@@ -17,8 +17,8 @@
                 VerticalOptions="Center">
 
                 <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
-                    <Image Source="prince_3d_default.png"
-                           SemanticProperties.Description="A 3D prince!!"
+                    <Image Source="{Binding Profile}"
+                           SemanticProperties.Description="A 3D person with a crown!!"
                            HeightRequest="64" />
                     <Label FontSize="36" FontAttributes="Bold" Text="{Binding Character.Name}" VerticalOptions="End" />
                 </HorizontalStackLayout>
@@ -27,18 +27,25 @@
                              HeightRequest="2"
                              HorizontalOptions="Fill" />
 
-                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                <HorizontalStackLayout Spacing="5" HorizontalOptions="Start" >
                     <Label FontSize="18" FontAttributes="Bold" Text="ID:" VerticalOptions="Center" />
-                    <Entry FontSize="18" Text="{Binding Character.Id, Mode=TwoWay}" VerticalOptions="End" />
-                    <Button 
+                    <Entry
+                           FontSize="16"
+                           Placeholder="Enter numeric ID"
+                           Text="{Binding Id, Mode=TwoWay}"
+                           ReturnCommand="{Binding FindCharacterCommand}"
+                           ReturnType="Search"
+                           Keyboard="Numeric"
+                           VerticalOptions="Start" />
+                    <ImageButton Source="fluent_search_filled_black.png"
                            Command="{Binding FindCharacterCommand}"
                            CommandParameter="2"
                            SemanticProperties.Description="A 3D prince!!"
                            IsEnabled="True"
-                           HeightRequest="24" 
-                           VerticalOptions="End"/>
+                           WidthRequest="24"
+                           HeightRequest="24" />
                 </HorizontalStackLayout>
-                
+
                 <BoxView Color="Gray"
                              HeightRequest="1"
                              HorizontalOptions="Fill" />
@@ -90,7 +97,7 @@
                 
                 <VerticalStackLayout Spacing="10" HorizontalOptions="Start">
                     <Label FontSize="18" FontAttributes="Bold" Text="Titles:" VerticalOptions="End" />
-                    <CollectionView ItemsSource="{Binding Character.Titles}" /> <!-- FontSize="18" Text="{Binding Character.Titles}" VerticalOptions="End" /> -->
+                    <CollectionView ItemsSource="{Binding Character.Titles}" VerticalOptions="End"/> <!-- FontSize="18" Text="{Binding Character.Titles}" VerticalOptions="End" /> -->
                 </VerticalStackLayout>
 
                 <BoxView Color="Gray"
@@ -134,46 +141,46 @@
                              HeightRequest="1"
                              HorizontalOptions="Fill" />
                 
-                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Start">
                     <Label FontSize="18" FontAttributes="Bold" Text="Allegiances:" VerticalOptions="Start" />
-                    <Label FontSize="18" Text="{Binding Character.Allegiances}" VerticalOptions="End" />
-                </HorizontalStackLayout>
+                    <CollectionView ItemsSource="{Binding Character.Allegiances}" VerticalOptions="End" />
+                </VerticalStackLayout>
 
                 <BoxView Color="Gray"
                              HeightRequest="1"
                              HorizontalOptions="Fill" />
                 
-                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Start">
                     <Label FontSize="18" FontAttributes="Bold" Text="Books:" VerticalOptions="End" />
-                    <Label FontSize="18" Text="{Binding Character.Books}" VerticalOptions="End" />
-                </HorizontalStackLayout>
+                    <CollectionView ItemsSource="{Binding Character.Books}" VerticalOptions="End" />
+                </VerticalStackLayout>
 
                 <BoxView Color="Gray"
                              HeightRequest="1"
                              HorizontalOptions="Fill" />
                 
-                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Start">
                     <Label FontSize="18" FontAttributes="Bold" Text="POV Books:" VerticalOptions="End" />
-                    <Label FontSize="18" Text="{Binding Character.PovBooks}" VerticalOptions="End" />
-                </HorizontalStackLayout>
+                    <CollectionView ItemsSource="{Binding Character.PovBooks}" VerticalOptions="End" />
+                </VerticalStackLayout>
 
                 <BoxView Color="Gray"
                              HeightRequest="1"
                              HorizontalOptions="Fill" />
 
-                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Start">
                     <Label FontSize="18" FontAttributes="Bold" Text="TV Series:" VerticalOptions="End" />
-                    <Label FontSize="18" Text="{Binding Character.TvSeries}" VerticalOptions="End" />
-                </HorizontalStackLayout>
+                    <CollectionView ItemsSource="{Binding Character.TvSeries}" VerticalOptions="End" />
+                </VerticalStackLayout>
 
                 <BoxView Color="Gray"
                              HeightRequest="1"
                              HorizontalOptions="Fill" />
 
-                <HorizontalStackLayout Spacing="10" HorizontalOptions="Start">
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Start">
                     <Label FontSize="18" FontAttributes="Bold" Text="Played By:" VerticalOptions="End" />
-                    <Label FontSize="18" Text="{Binding Character.PlayedBy}" VerticalOptions="End" />
-                </HorizontalStackLayout>
+                    <CollectionView ItemsSource="{Binding Character.PlayedBy}" VerticalOptions="End" />
+                </VerticalStackLayout>
             </VerticalStackLayout>
         </ScrollView>
     </Frame>

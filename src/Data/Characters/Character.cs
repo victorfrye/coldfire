@@ -19,6 +19,45 @@ public class Character
     public IList<string> TvSeries { get; set; }
     public IList<string> PlayedBy { get; set; }
 
+    public Character()
+    {
+        Id = 0;
+        Name = string.Empty;
+        Titles = new List<string>();
+        Aliases = new List<string>();
+        Allegiances = new List<string>();
+        Books = new List<string>();
+        PovBooks = new List<string>();
+        TvSeries = new List<string>();
+        PlayedBy = new List<string>();
+    }
+
+    public Character(int id)
+    {
+        Id = id;
+        Name = string.Empty;
+        Titles = new List<string>();
+        Aliases = new List<string>();
+        Allegiances = new List<string>();
+        Books = new List<string>();
+        PovBooks = new List<string>();
+        TvSeries = new List<string>();
+        PlayedBy = new List<string>();
+    }
+
+    public Character(int id, string name)
+    {
+        Id = id;
+        Name = name;
+        Titles = new List<string>();
+        Aliases = new List<string>();
+        Allegiances = new List<string>();
+        Books = new List<string>();
+        PovBooks = new List<string>();
+        TvSeries = new List<string>();
+        PlayedBy = new List<string>();
+    }
+
     public Character(
         int id,
         string name,
