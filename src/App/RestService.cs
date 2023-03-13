@@ -15,7 +15,7 @@ namespace VictorFrye.Coldfire.App
             var clientHandlerService = new HttpsClientHandlerService();
             var handler = clientHandlerService.GetPlatformMessageHandler();
 
-            _client = handler != null
+            _client = handler == null
                 ? new HttpClient() 
                 : new HttpClient(handler);
 #else

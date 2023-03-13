@@ -28,14 +28,17 @@ namespace VictorFrye.Coldfire.App.Characters
                     switch (character)
                     {
                         case null:
-                            Character = new Character(value);
+                            character = new Character(value);
                             break;
                         default:
                             character.Id = value;
-                            OnPropertyChanged(nameof(Character));
                             break;
                     }
 
+                    SetProfileImage();
+                    SetDisplayName();
+
+                    OnPropertyChanged(nameof(Character));
                     OnPropertyChanged();
                 }
             }
