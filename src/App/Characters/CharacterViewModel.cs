@@ -10,8 +10,10 @@ namespace VictorFrye.Coldfire.App.Characters
         private int id;
         private Character character;
         private ImageSource profile;
+        private string displayName;
 
-        private readonly IService<Character> _service;
+        private readonly IRestService<Character> _restService;
+        private readonly IUserDialogService _userDialogService;
 
         public ICommand FindCharacterCommand { get; private set; }
 
@@ -26,16 +28,14 @@ namespace VictorFrye.Coldfire.App.Characters
                     switch (character)
                     {
                         case null:
-                            character = new Character(value);
+                            Character = new Character(value);
                             break;
                         default:
                             character.Id = value;
+                            OnPropertyChanged(nameof(Character));
                             break;
                     }
 
-                    SetProfileImage();
-
-                    OnPropertyChanged(nameof(Character));
                     OnPropertyChanged();
                 }
             }
@@ -52,6 +52,7 @@ namespace VictorFrye.Coldfire.App.Characters
                     id = value.Id;
 
                     SetProfileImage();
+                    SetDisplayName();
 
                     OnPropertyChanged(nameof(Id));
                     OnPropertyChanged();
@@ -72,37 +73,64 @@ namespace VictorFrye.Coldfire.App.Characters
             }
         }
 
-        public CharacterViewModel(IService<Character> service) 
+        public string DisplayName
         {
-            _service = service;
+            get { return displayName; }
+            set
+            {
+                if (displayName != value)
+                {
+                    displayName = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public CharacterViewModel(IRestService<Character> restService, IUserDialogService userDialogService) 
+        {
+            _restService = restService;
+            _userDialogService = userDialogService;
             FindCharacterCommand = new Command(FindCharacter);
             profile = ImageSource.FromFile("person_with_crown_3d_default.png");
         }
 
-        private void FindCharacter()
-        {
-            Character = _service.Find(id);
+        private async void FindCharacter() {
+            var result = await _restService.SendGet(id);
+
+            if (result == null)
+            {
+                await _userDialogService.DisplayAlert("Not Found", $"No character was found with ID of {id}.", "OK");
+                Character = new Character(id);
+                return;
+            }
+
+            Character = result;
         }
 
         private void SetProfileImage()
         {
-            if (character == null) { return; }
+            if (character == null || character.Gender == null) { return; }
 
-            switch (character.Gender)
+            switch (character.Gender.ToUpper())
             {
-                case "Male":
-                    profile = ImageSource.FromFile("prince_3d_default.png");
+                case "MALE":
+                    Profile = ImageSource.FromFile("prince_3d_default.png");
                     OnPropertyChanged(nameof(Profile));
                     break;
-                case "Female":
-                    profile = ImageSource.FromFile("princess_3d_default.png");
+                case "FEMALE":
+                    Profile = ImageSource.FromFile("princess_3d_default.png");
                     OnPropertyChanged(nameof(Profile));
                     break;
                 default:
-                    profile = ImageSource.FromFile("person_with_crown_3d_default.png");
+                    Profile = ImageSource.FromFile("person_with_crown_3d_default.png");
                     OnPropertyChanged(nameof(Profile));
                     break;
             }
+        }
+
+        private void SetDisplayName()
+        {
+            DisplayName = string.IsNullOrWhiteSpace(character.Name) ? character.Aliases.FirstOrDefault() : character.Name;
         }
     }
 }

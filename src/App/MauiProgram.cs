@@ -20,9 +20,14 @@ namespace VictorFrye.Coldfire.App
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+#if DEBUG
+            builder.Services.AddSingleton<IHttpsClientHandlerService, HttpsClientHandlerService>();
+#endif
+            builder.Services.AddSingleton<IUserDialogService, UserDialogService>();
+            builder.Services.AddSingleton<IRestService<Character>, CharacterService>();
+
             builder.Services.AddTransient<CharactersPage>();
             builder.Services.AddTransient<CharacterViewModel>();
-            builder.Services.AddSingleton<IService<Character>, CharacterService>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

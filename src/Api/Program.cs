@@ -11,9 +11,9 @@ using VictorFrye.Coldfire.Data;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ColdfireDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("ColdfireDatabase")));
-builder.Services.AddSingleton<IService<Book>, BookService>();
-builder.Services.AddSingleton<IService<Character>, CharacterService>();
-builder.Services.AddSingleton<IService<House>, HouseService>();
+builder.Services.AddTransient<IService<Book>, BookService>();
+builder.Services.AddTransient<IService<Character>, CharacterService>();
+builder.Services.AddTransient<IService<House>, HouseService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

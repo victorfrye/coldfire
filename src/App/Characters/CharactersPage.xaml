@@ -20,7 +20,7 @@
                     <Image Source="{Binding Profile}"
                            SemanticProperties.Description="A 3D person with a crown!!"
                            HeightRequest="64" />
-                    <Label FontSize="36" FontAttributes="Bold" Text="{Binding Character.Name}" VerticalOptions="End" />
+                    <Label FontSize="36" FontAttributes="Bold" Text="{Binding DisplayName}" VerticalOptions="End" />
                 </HorizontalStackLayout>
 
                 <BoxView Color="Gray"

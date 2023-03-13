@@ -113,6 +113,5 @@ public class Character
         TvSeries = entity.TvSeries.ToList() ?? new List<string>();
         PlayedBy = entity.PlayedBy.ToList() ?? new List<string>();
     }
-
-    public static string GetDisplayName(CharacterEntity character) => string.IsNullOrWhiteSpace(character.Name) ? character.Name : character.Aliases.First();
+    public static string GetDisplayName(CharacterEntity character) => string.IsNullOrWhiteSpace(character.Name) ? character.Aliases.First() : character.Name;
 }
