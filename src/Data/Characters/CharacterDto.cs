@@ -17,27 +17,4 @@ public class CharacterDto
     public int[] PovBooks { get; set; }
     public string[] PlayedBy { get; set; }
     public string[] TvSeries { get; set; }
-
-    /*    public CharacterEntity ToCharacterEntity()
-        {
-            return new CharacterEntity()
-            {
-                Id = Id,
-                Name = Name,
-                IsFemale = IsFemale,
-                Born = Born,
-                Died = Died,
-                SpouseId = Spouse,
-                FatherId = Father,
-                MotherId = Mother,
-                Culture = Culture,
-                Titles = string.Join(";", Titles),
-                Aliases = string.Join(";", Aliases),
-                PlayedBy = string.Join(";", PlayedBy),
-                TvSeries = string.Join(";", TvSeries),
-                PovBookIdentifiers = PovBooks,
-                BookIdentifiers = Books,
-                AllegianceIdentifiers = Allegiances
-            };
-        }*/
 }

@@ -3,6 +3,9 @@ using VictorFrye.Coldfire.Api;
 using VictorFrye.Coldfire.Api.Books;
 using VictorFrye.Coldfire.Api.Characters;
 using VictorFrye.Coldfire.Api.Houses;
+using VictorFrye.Coldfire.Data.Books;
+using VictorFrye.Coldfire.Data.Characters;
+using VictorFrye.Coldfire.Data.Houses;
 using VictorFrye.Coldfire.Data;
 
 var builder = WebApplication.CreateBuilder(args);

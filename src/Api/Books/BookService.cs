@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VictorFrye.Coldfire.Data;
+using VictorFrye.Coldfire.Data.Books;
 
 namespace VictorFrye.Coldfire.Api.Books
 {

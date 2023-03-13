@@ -98,7 +98,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\castle_3d.png" />
 	  <None Remove="Resources\Images\dragon_3d.png" />
+	  <None Remove="Resources\Images\fluent_search_filled_black.png" />
+	  <None Remove="Resources\Images\fluent_search_filled_white.png" />
+	  <None Remove="Resources\Images\fluent_search_outlined_black.png" />
+	  <None Remove="Resources\Images\fluent_search_outlined_white.png" />
+	  <None Remove="Resources\Images\open_book_3d.png" />
+	  <None Remove="Resources\Images\person_with_crown_3d_default.png" />
+	  <None Remove="Resources\Images\princess_3d_default.png" />
+	  <None Remove="Resources\Images\prince_3d_default.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -113,17 +122,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="CharactersPage.xaml">
+	  <ProjectReference Include="..\Data\ColdfireData.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Characters\CharactersPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="HousesPage.xaml">
+	  <MauiXaml Update="Houses\HousesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="BooksPage.xaml">
+	  <MauiXaml Update="Books\BooksPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
@@ -134,5 +148,7 @@
 	    <PackagePath>\</PackagePath>
 	  </None>
 	</ItemGroup>
+
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionColdfireAppHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>
